@@ -1,0 +1,8 @@
+<%= form_for @post do |f| %>
+    <%= f.label :body %>
+    <%= f.text_field :name, :size => 140 %>
+    <%= f.text_field :genre, :size => 140 %>
+    <%= f.text_field :address, :size => 140 %>
+    <%= f.text_field :about, :size => 140 %> 
+    <%= f.submit "編集する" %>
+  <% end %>

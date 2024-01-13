@@ -1,0 +1,39 @@
+<h1>家系ラーメン</h1>
+<h3>Tweet詳細</h3>
+<div class="post">
+  <p><%= @post.name %></p>
+  <p><%= @post.genre %></p>
+  <p><%= @post.address %></p>
+  <p><%= @post.about %></p>
+  <p><%= @post.created_at %></p>
+  <p><%= @post.lat %></p>
+  <p><%= @post.lng %></p>
+  <% @post.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+  <% end %>
+  </div>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(@post) %>
+        <%= link_to post_like_path(@post), method: :delete do %>
+          <p>いいねを取り消す</p><%= @post.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to post_likes_path(@post), method: :post do %>
+          <p>いいね</p><%= @post.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @post.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_post_path(@post.id) %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @post.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+
+
+<%= link_to "ラーメン一覧に戻る", posts_path %>
+
