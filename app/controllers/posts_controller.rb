@@ -11,7 +11,11 @@ class PostsController < ApplicationController
           #部分検索
           @posts = Post.where("name LIKE ? ",'%' + params[:search] + '%')
         end
-
+        
+        if params[:tag]
+          Tag.create(name: params[:tag])
+        end
+        
         if params[:tag_ids]
           @posts = []
           params[:tag_ids].each do |key, value|
